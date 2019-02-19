@@ -40,8 +40,16 @@ lineReader.on('line', function (line) {
         }
     }
     console.log("item With Support Above Treeshold: ", Object.keys(itemWithSupportAboveTreeshold));
-    let prodCart = Object.keys(itemWithSupportAboveTreeshold).map( itm1 => 
+    let prodCart = []; 
+    Object.keys(itemWithSupportAboveTreeshold).map( itm1 => 
         Object.keys(itemWithSupportAboveTreeshold).map(itm2 => `${itm1}${itm2}`)
-    );
+    ).map( arrElem => {
+        console.log(arrElem);
+        arrElem.forEach(elem => {
+            let reverse = elem.split('').reverse().join('');
+            if ( !prodCart.includes(elem) && !prodCart.includes(reverse) ) 
+                prodCart.push(elem);
+        });
+    });
     console.log('prod Cart: ', prodCart);
 });
